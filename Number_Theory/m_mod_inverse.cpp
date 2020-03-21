@@ -38,7 +38,7 @@ ll gcd(ll a, ll b){
 
 ll m_mod_inverse(ll a, ll m){
     triplet ans = extend_euclide(a,m); // a should greater or equal than m;
-    return ans.x;
+    return (ans.x%m + m)%m; // avoid negative value by adding (ans%m + m)%m; 
 
 }
 
