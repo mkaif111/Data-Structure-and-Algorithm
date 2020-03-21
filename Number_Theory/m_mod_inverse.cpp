@@ -36,20 +36,29 @@ ll gcd(ll a, ll b){
     return (b==0)?a:gcd(b,a%b);
 }
 
+ll m_mod_inverse(ll a, ll m){
+    triplet ans = extend_euclide(a,m); // a should greater or equal than m;
+    return ans.x;
+
+}
+
+
 
 
 
 
 int main(){
 
-    ll a, b ;
-    cin>>a >> b;
+    ll a, b ,m;
+    cin>>a >>m;
 
-    triplet ans = extend_euclide(max(a,b),min(a,b));
+    // triplet ans = extend_euclide(max(a,b),min(a,b));
 
-    cout<<"Gcd of "<<a<<" "<<b<<" is "<<ans.gcd<<endl;
-    cout<<"X "<<ans.x<<endl;
-    cout<<"Y "<<ans.y<<endl;
+    // cout<<"Gcd of "<<a<<" "<<b<<" is "<<ans.gcd<<endl;
+    // cout<<"X "<<ans.x<<endl;
+    // cout<<"Y "<<ans.y<<endl;
+
+    cout<<"Modulus Inverse : "<<m_mod_inverse(max(a,m),min(m,a))<<endl;
 
 
 
