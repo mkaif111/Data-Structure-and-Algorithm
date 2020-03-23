@@ -34,7 +34,43 @@ int main(){
 
     v.clear();
 
+    // check if vector is empty or not
+
+    if(v.empty()){
+        cout<<"Vector is empty"<<endl;
+    }
+
+    v.push_back(16);
+    v.push_back(20);
+    v.push_back(24);
+
+    // print front most element;
+    cout<<v.front()<<endl;
+
+    // print last most element
+    cout<<v.back()<<endl;
     
+
+    // use vector as array by initializing first
+    //Best practise to initialize vector
+
+    cout<<"Size of Vector"<<endl;
+
+    int n;
+    cin>>n;
+
+    vector<int> arr(n,0);
+    
+
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+
+    for(int i:arr){
+        cout<<i<<" ";
+    }
+
+
 
 
 
