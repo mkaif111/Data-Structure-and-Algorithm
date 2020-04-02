@@ -7,7 +7,8 @@ int calculateMex(unordered_set<int> Set)
     int Mex = 0; 
   
     while (Set.find(Mex) != Set.end()) 
-        Mex++; 
+       {cout<<Mex<<endl;
+            Mex++; }
   
     return (Mex); 
 } 
@@ -20,7 +21,7 @@ int calculateGrundy(int n, int Grundy[])
     Grundy[3] = 3; 
   
     if (Grundy[n] != -1) 
-        return (Grundy[n]); 
+        return Grundy[n]; 
   
     unordered_set<int> Set; // A Hash Table 
   
