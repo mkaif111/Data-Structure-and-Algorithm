@@ -9,11 +9,10 @@ ll factorize(ll n , ll k)
     ll count = 0; 
   
     // count the number of times 2 divides
-    if(n%2==0)
-        count++;  
+      
     while (!(n % 2)) { 
         n >>= 1; // equivalent to n=n/2; 
-        count++; 
+        count++;
     } 
     
     
@@ -24,11 +23,11 @@ ll factorize(ll n , ll k)
     // divide it 
     for (long long i = 3; i <= sqrt(n); i += 2) { 
 
-        if(n%i==0)
-            count++; 
+        if(n%i==0){   
         while (n % i == 0) { 
-            
+            count++; 
             n = n / i; 
+        }
         }
        
     } 
@@ -43,24 +42,21 @@ ll factorize(ll n , ll k)
 
 int main(){
 
-    
-    // vector<ll> v = sieve();
    
     int t;
     cin>>t;
+
     while(t--){
         ll n,k;
-        cin>>n>>k;
-        ll x=n;
+        cin >> n >> k;
+        
         int ans=0;
         
         
         
 
-        if(factorize(n,k)>=k){
-            // cout<<" Yes ";
-            ans=1;
-        }
+        if((ll)factorize(n,k)>=k)
+            ans = 1;
     
         cout<<ans<<endl;
 
