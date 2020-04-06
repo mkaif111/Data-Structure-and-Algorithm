@@ -19,9 +19,7 @@ int main(){
         for(int i=0;i<n;i++)
         {
             cin>>arr[i];
-            // sum = (sum%Mod + arr[i]%Mod)%Mod;
-            // if(arr[i]==0)
-            // count_zero++;
+            
         }
         
         sort(arr,arr+n,greater<int>());

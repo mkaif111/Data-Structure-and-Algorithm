@@ -1,67 +1,74 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-#define Max 1000001
+#define Max 1000000
 #define ll long long int
 
-
-vector<pair<ll,ll>> sieve(){
-
-    vector<pair<ll,ll>> prime(Max,{0,0}); // first--> divisor,  second-->prime_no
-    // cout<<prime[5].first<<" "<<prime[5].second<<endl;
+ll factorize(ll n , ll k) 
+{ 
+    ll count = 0; 
+  
+    // count the number of times 2 divides
+    if(n%2==0)
+        count++;  
+    while (!(n % 2)) { 
+        n >>= 1; // equivalent to n=n/2; 
+        count++; 
+    } 
     
-    prime[1].first = 1;
-    prime[1].second = 0;
+    
+  
+     
+  
+    // check for all the possible numbers that can  
+    // divide it 
+    for (long long i = 3; i <= sqrt(n); i += 2) { 
 
-    for(int i=2;i<=Max;i++){
-        
-        for(int j=2*i;j<=Max;j=i+j)
-        {
+        if(n%i==0)
+            count++; 
+        while (n % i == 0) { 
             
-            prime[j].first=prime[j].first + 1;
-
-            if(prime[i].second==0)
-            {
-                prime[j].second=prime[j].second + 1;
-                
-            }
-
+            n = n / i; 
         }
-    }
-    prime[2].second = 1;
-    for(int i=3;i<=Max;i+=2){
-        if(prime[i].second==0){
-            prime[i].second++;
-        }
-    }
-    
-    // cout<<prime[5].first<<" "<<prime[5].second<<endl;
+       
+    } 
+  
+   
+    if (n > 2)  
+        count++;
 
-    return prime;
+    return count;
+} 
 
-
-}
 
 int main(){
 
     
-    vector<pair<ll,ll>> v = sieve();
+    // vector<ll> v = sieve();
    
     int t;
     cin>>t;
     while(t--){
         ll n,k;
         cin>>n>>k;
-        // int ans=0;
-        // for(int i=1;i<=Max;i++){
-        //     if(v[i].first+2==n && v[i].second==k)
-        //        { ans=1;
-        //         break;}
-        // }
+        ll x=n;
+        int ans=0;
+        
+        
+        
 
-        cout<<v[n].first+2<<" "<<v[n].second<<endl;
-        cout<<v[k].first+2<<" "<<v[k].second<<endl;
+        if(factorize(n,k)>=k){
+            // cout<<" Yes ";
+            ans=1;
+        }
+    
+        cout<<ans<<endl;
+
+        
     }
+
+
+
 
     // 
 
