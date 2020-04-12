@@ -13,15 +13,6 @@ bool isValid(char graph[NMAX][NMAX] , int x , int y , int n , bool** visited ){
     return true;
 }
 
-int bfs(char cake[][NMAX], int row , int col ,int n , bool** visited ){
-    
-    int count=0;
-    int x_step[] = {-1,-1,0,1,1,1,0,-1};
-    int y_step[] = {0,1,1,1,0,-1,-1,-1};
-    
-    
-    
-}
 
 
 int dfs(char cake[NMAX][NMAX] , int row , int col , int n, bool** visited){
