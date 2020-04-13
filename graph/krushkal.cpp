@@ -15,14 +15,17 @@ bool com(edges v1 ,edges v2){
     return (v1.weight<v2.weight)?true:false;
 }
 
-int getparent(int v , int* parent){
-    if(parent[v]==v){
-        return v;
+bool union_algo(int* parent ,int v1 , int v2){
+    while(parent[v1]!=v1){
+        v1 = parent[v1];
     }
-    return getparent(parent[v],parent);
+    
+     while(parent[v2]!=v2){
+        v2 = parent[v2];
+    }
+    
+    return v1!=v2;
 }
-
-
 
 
 int main()
@@ -51,18 +54,19 @@ int main()
     int i=0;
     
     sort(edge,edge+e,com);
-   
+    // for(int i=0;i<v;i++){
+    //     cout<<edge[i].des<<" "<<edge[i].src<<" "<<edge[i].weight<<endl;
+    // }
+    
     while(count!=v-1){
         
-        
-        int src_parent = getparent(edge[i].src, parent);
-        int des_parent = getparent(edge[i].des , parent);
-        if(src_parent!=des_parent)
-        {	
-            
-            mst[count] = edge[i];
+        if(union_algo(parent,edge[i].src , edge[i].des))
+        {
+            mst[count].des = edge[i].des;
+            mst[count].weight = edge[i].weight;
+            mst[count].src = edge[i].src;
             count++;
-            parent[src_parent] = des_parent;
+            parent[edge[i].des] = edge[i].src;
         }
         
         i++;
