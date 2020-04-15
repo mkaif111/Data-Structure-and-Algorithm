@@ -2,6 +2,8 @@
 #include<vector>
 using namespace std;
 
+
+
 int solve(int n,int m,vector<int>u,vector<int>v)
 {
 	// Write your code here .

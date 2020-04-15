@@ -1,0 +1,4 @@
+*.exe
+settings.json
+tasks.json
+.igitignore
