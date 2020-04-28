@@ -5,7 +5,13 @@ using namespace std;
 int main(){
 
     int n;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    freopen("output.txt", "w", stdout);
     cin>>n;
+
+    
 
     for(int i=1;i<=n;i++){
         int val = 1;
