@@ -1,6 +1,11 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string>
+#include<queue>
+
 using namespace std;
 
+//BFS
 bool hasPath(int** edges , int sv, int n, bool* visited , int ev)
 {
         if(sv==ev){
@@ -35,6 +40,22 @@ bool hasPath(int** edges , int sv, int n, bool* visited , int ev)
 
 
 }
+//DFS
+bool hasPath1(int** edges,int start,int n,bool *visited,int v){
+    if(start==v) return true;
+    visited[start] = true;
+    
+    for(int i=0;i<n;i++)
+    {
+        if(!visited[i] && edges[start][i])
+        {
+            if(hasPath1(edges,i,n,visited,v)) return true;
+        }
+    }
+    
+    return false;
+}
+
 
 int main()
 {
@@ -73,7 +94,7 @@ int main()
     
     
   
-    if(hasPath(edges,start,n,visited,v))
+    if(hasPath1(edges,start,n,visited,v))
  
     
     {
@@ -89,7 +110,6 @@ int main()
     for(int i=0;i<n;i++){
         delete edges[i];
     }
-    
     delete edges;
     delete visited;
      
