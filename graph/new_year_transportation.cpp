@@ -1,9 +1,9 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define ll long long int
-#define mx 5000
+#define mx 50000
 vector<int> edges[mx];
-bool visited[5000];
+bool visited[mx];
 
 bool bfs(vector<int>* edges , int n, int end,int start){
     if(start==end){
