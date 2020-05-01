@@ -11,7 +11,7 @@ int getMinV(bool* visited ,int* dist , int n){
             minWV = i;
     }
     
-    return minWV;
+    return minWV; // return index whose have min. weight
 }
 void dijkstra(int** edges , int n){
     
@@ -28,7 +28,7 @@ void dijkstra(int** edges , int n){
     
     dist[0] = 0;
     
-    
+    // transverse through all n-1 edges
     for(int i=0;i<n-1;i++){
         
         int minVertex = getMinV(visited,dist,n);
