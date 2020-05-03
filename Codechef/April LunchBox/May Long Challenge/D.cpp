@@ -33,6 +33,28 @@ void decToBinary(ll n)
     cout<<endl;
 }
 
+ll bs(ll x ,ll y,ll l , ll r){
+    ll low = l;
+    ll high = r;
+
+    ll ans=-1;
+    ll max_a = -1;
+    while(low<high ){
+        ll mid = low + (high-low)/2;
+        ll curr_max = (x & mid) * (y & mid);
+        if(curr_max>max_a){
+            ans = mid;
+            max_a = curr_max;
+            low = mid;
+        }
+        else{
+            low = mid;
+        }
+    }
+
+    return ans;
+}
+
 
 int main(){
 
@@ -48,6 +70,7 @@ int main(){
         ll r_v=1;
         
         r_v = x|y;
+        cout<<bs(x,y,l,r)<<endl;
         // cout<<r_v<<endl;
         if(r_v<=r && min(x,y)!=0)
             {    
