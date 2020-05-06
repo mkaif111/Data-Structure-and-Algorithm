@@ -62,9 +62,7 @@ int main()
         
         if(union_algo(parent,edge[i].src , edge[i].des))
         {
-            mst[count].des = edge[i].des;
-            mst[count].weight = edge[i].weight;
-            mst[count].src = edge[i].src;
+            mst[count] = edge[i];
             count++;
             parent[edge[i].des] = edge[i].src;
         }

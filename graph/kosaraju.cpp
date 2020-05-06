@@ -25,7 +25,7 @@ void dfs2(vector<int>* edges, int start, unordered_set<int>* component, unordere
 		}
 	}
 }
-
+// main func
 unordered_set<unordered_set<int>*>* getSCC(vector<int>* edges, vector<int>* edgesT, int n) {
 	unordered_set<int> visited;
 	stack<int> finishedVertices;
@@ -56,13 +56,22 @@ int main() {
 	vector<int>* edgesT = new vector<int>[n];
 	int m;
 	cin >> m;
+	cout<<"first"<<endl;
 	for (int i = 0; i < m; i++) {
 		int j, k;
 		cin >> j >> k;
-		edges[j - 1].push_back(k - 1);
-		edgesT[k - 1].push_back(j - 1);
+		edges[j].push_back(k);
+		edgesT[k].push_back(j);
 	}
+	cout<<"first"<<endl;
+	for(int i=0;i<n;i++){
+		for(int j=0;j<edgesT[i].size();j++){
+			cout<<edgesT[i][j]<<" ";
+		}
+	}
+	cout<<endl;
 	unordered_set<unordered_set<int>*>* components = getSCC(edges, edgesT, n);
+	cout<<components->size()<<endl;
 	unordered_set<unordered_set<int>*>::iterator it = components->begin();
 	while (it != components->end()) {
 		unordered_set<int>* component = *it;

@@ -1,180 +1,129 @@
 #include<bits/stdc++.h>
 using namespace std;
-#define ll long long int
 
-ll min(ll x,ll y){
-    if(x<y){
-        return x;
-    }
-    else{
-        return y;
-    }
-}
+#define ll long long int 
+#define print printf
 
-void decToBinary(ll n) 
-{ 
-    // array to store binary number 
-    int binaryNum[64]; 
-  
-    // counter for binary array 
-    int i = 0; 
-    while (n > 0) { 
-  
-        // storing remainder in binary array 
-        binaryNum[i] = n % 2; 
-        n = n / 2; 
-        i++; 
-    } 
-  
-    // printing binary array in reverse order 
-    for (int j = i - 1; j >= 0; j--) 
-        cout << binaryNum[j]<<" "; 
+ll sol2(ll x,ll y, ll l,ll r){
     
-    cout<<endl;
+    if(x==0 || y==0)
+        return l;
+    int count=0;
+            ll rcopy = r;
+
+            while(rcopy>0){
+                rcopy = rcopy>>1;
+                count++;
+            }
+
+            ll fixrange = 1<<count;
+            fixrange--;
+            ll z = (x | y)&fixrange;
+            
+            ll z_c = (x&fixrange)&(y&fixrange);
+            // printf("Z common : %lld\n",z_c);
+            
+            if(z_c==0)
+             return l;
+            // if(z<=r)
+            //     return z;
+            
+            ll ans = (x&z)&(y&z);
+            ll finalans = z;
+            //decrement
+            for(int i=0;i<count-1;i++){
+                ll m = 1<<i;
+                if((z & m)==m){
+                    z = z ^ m;
+                }
+                if(z<=r)
+                    break;
+            }
+            // increment;
+            for(int i=count-1;i>=0;i--){
+                ll m = 1<<i;
+                if((finalans & m)== m && (z | m) <=r)
+                    z = z | m;
+
+            }
+        
+
+        // ll bans = INT_MIN;
+        // ll zz = -1;
+
+        // ll low = l;
+        // ll high  = r;
+
+        // while(low<high){
+        //     ll mid = (low+high)/2;
+        //     ll fake = (x & mid)*(y & mid);
+        //     print("low : %lld high : %lld mid : %lld fake : %lld \n",low,high,mid,fake);
+           
+        //     if(fake>bans){
+        //         bans = fake;
+        //         zz = mid;
+        //         low = mid;
+        //     }
+        //     else if(fake==0){
+        //         high--;
+        //     }
+        //     else{
+        //         high = mid;
+        //     }
+        // }
+
+        ll ans1 = (x&z)*(y&z);
+        ll ans2 = (x&(z-1))*(y&(z-1));
+        if(ans2>ans1)
+            return z-1;
+        if(ans1==0)
+            return l;
+        return z;
+
 }
 
-ll bs(ll x ,ll y,ll l , ll r){
-    ll low = l;
-    ll high = r;
-
-    ll ans=-1;
-    ll max_a = -1;
-    while(low<high ){
-        ll mid = low + (high-low)/2;
-        ll curr_max = (x & mid) * (y & mid);
-        if(curr_max>max_a){
-            ans = mid;
-            max_a = curr_max;
-            low = mid;
-        }
-        else{
-            low = mid;
+ll sol(ll x,ll y, ll l,ll r){
+    ll ans =-1;
+    ll z = 0;
+    for(ll i=l;i<=r;i++){
+        ll check = (x & i)*(y & i);
+        if(check>ans){
+            ans = check;
+            z = i;
         }
     }
 
-    return ans;
+    return z;
 }
 
 
 int main(){
 
     int t;
-    cin>>t;
+    scanf("%d",&t);
 
     while(t--){
         ll x,y,l,r;
-        scanf("%lld%lld%lld%lld",&x,&y,&l,&r);
-        // cin>>x>>y>>l>>r;
-
+        scanf("%lld %lld %lld %lld",&x,&y,&l,&r);
         
-        ll r_v=1;
+
+        ll z = x | y;
+
+        if(z<=r && (x!=0 && y!=0) && z>=l)
+            printf("%lld \n",z);
         
-        r_v = x|y;
-        cout<<bs(x,y,l,r)<<endl;
-        // cout<<r_v<<endl;
-        if(r_v<=r && min(x,y)!=0)
-            {    
-               printf("%lld \n",r_v);
-            }
-        else{
+        else
+        {
+           
+        ll loopans = sol2(x,y,l,r);
+        printf("%lld \n",loopans);
 
-
-        ll ans=0;
-        ll count=0;
-        ll val = r;
-
-        while(val>0){
-            count++;
-            val=val>>1;
             
-        }
-        // cout<<count<<endl;
+        } // else end
         
-        ans = 1<<count;
-        // cout<<ans<<endl;
-        ans = ans-1;
-        // cout<<ans<<endl;
-        // cout<<r_v<<endl;
-        
-        r_v = r_v & ans;
-        // cout<<"---"<<r_v<<endl;
-        ll temp = r_v;
-        // cout<<"#####"<<endl;
-        if(r_v>r){
-            for(int i=0;i<count;i++)
-            {
-                ll m = 1<<i;
-                // cout<<m<<endl;
-                // cout<<(r_v&m)<<endl;
-                if((r_v & m) == m)
-                {
-                    r_v = r_v^m;
-                    // cout<<" r_v : "<<r_v<<endl;
-                }
-
-                if(r_v<=r){
-                    break;
-                }
-                
-                   
-                
-            }
-        }
-        
-  
-    for(int j=0;j<count;j++)
-    {
-        ll q = 1<<j;
-        if(((temp & q) == q) && (r_v | q)<=r) {
-            if( (r_v | q) > r_v)
-                 r_v= r_v | q;
-            // cout<<"&&&"<<" "<<r_v<<endl;
-            
-        }
-    }
-    
        
+        // ll loopans = sol(x,y,l,r);
+        // printf("Loop ans : %lld\n",loopans);
 
-      
-     ll an = (x & r_v)*(y & r_v);
-     if(an==0){
-         ll bck = 1<<(count-1);
-         bck--;
-         r_v = temp&bck;
-        //  cout<<"[[]]"<<r_v<<endl;
-         
-         ll cdm = (x&r_v)*(y&r_v);
-        //  printf("y : %lld x : %lld\n ",y,x);
-        //  printf("y&z : %lld x&z : %lld \n",y&r_v,x&r_v);
-        //  cout<<(x & r_v)*(y & r_v)<<endl;
-        //  cout<<cdm<<endl;
-
-         if(cdm==0){
-             r_v = l;
-         }
-         
-     }  
-    //   cout<<r_v<<endl;
-    if(x == 0 || y == 0)
-    {
-        r_v=l;
-    }
-    // printf("%lld\n",r_v);
-    printf("%lld \n",r_v);
-    // decToBinary(r_v);
-
-
-    }// else end here
-
-   
-        
-    //   decToBinary(x);
-    //   decToBinary(y);
-    //   decToBinary(x|y);    
-        
-        
-    }// end while loop
-
-    return 0;
-
+    } // while end
 }
