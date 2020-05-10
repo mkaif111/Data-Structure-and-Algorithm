@@ -46,7 +46,8 @@ void dijkstra(int** edges , int n){
         }
     }
     
-    for(int i=0;i<n;i++){
+    for(int i=0;i<n;i++)
+    {
         cout<<i<<" "<<dist[i]<<endl;
     }
     
