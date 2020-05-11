@@ -4,11 +4,11 @@
 #include<stack>
 using namespace std;
 
-bool bipartite(vector<int>* edges , int n, int start,bool* visited){
+bool bipartite(vector<int>* edges , int n, int start){
     if(n==0){
         return true;
     }
-    visited[start] = true;
+    
     unordered_set<int> set[2];
     set[0].insert(start);
     stack<int> pending;
@@ -48,17 +48,11 @@ int main(){
         for(int  i=0;i<m;i++){
             int x, y;
             cin>>x>>y;
-            edges[x-1].push_back(y);
+            edges[x].push_back(y);
         }
         bool* visited = new bool[n]();
-        bool flag = true;
-        for(int i=0;i<n;i++){
-            if(!visited[i]){
-                flag = bipartite(edges , n , i , visited);
-                if(!flag)
-                    break;
-            }
-        }
+        bool flag = bipartite(edges,n,0);
+        
 
         if(flag)
             cout<<"Bipartite"<<endl;

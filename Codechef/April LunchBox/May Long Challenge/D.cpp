@@ -20,65 +20,85 @@ ll sol2(ll x,ll y, ll l,ll r){
             fixrange--;
             ll z = (x | y)&fixrange;
             
-            ll z_c = (x&fixrange)&(y&fixrange);
+            ll z_c = (x&y);
+            z_c = z_c & fixrange;
             // printf("Z common : %lld\n",z_c);
             
-            if(z_c==0)
-             return l;
-            // if(z<=r)
-            //     return z;
-            
-            ll ans = (x&z)&(y&z);
-            ll finalans = z;
-            //decrement
-            for(int i=0;i<count-1;i++){
-                ll m = 1<<i;
-                if((z & m)==m){
-                    z = z ^ m;
-                }
-                if(z<=r)
-                    break;
-            }
-            // increment;
-            for(int i=count-1;i>=0;i--){
-                ll m = 1<<i;
-                if((finalans & m)== m && (z | m) <=r)
-                    z = z | m;
+            // if(z_c==0)
+            //  return l;
+            if(z<=r)
+                return z;
 
+            // binary search 
+            // printf("Bineary Search \n");
+            ll low = l;
+            ll high = r;
+            ll ans = -1;
+            while(low<high){
+                ll mid = low +(high-low)/2;
+                if((mid & z)>=ans){
+                    ans = (mid & z);
+                    low = mid+1;
+                }
+                else{
+                    high = mid-1;
+                }
             }
+
+            return ans;
+
+            
+        //     ll ans = (x&z)&(y&z);
+        //     ll finalans = z;
+        //     //decrement
+        //     for(int i=0;i<count-1;i++){
+        //         ll m = 1<<i;
+        //         if((z & m)==m){
+        //             z = z ^ m;
+        //         }
+        //         if(z<=r)
+        //             break;
+        //     }
+        //     // increment;
+        //     for(int i=count-1;i>=0;i--){
+        //         ll m = 1<<i;
+        //         if((finalans & m)== m && (z | m) <=r)
+        //             z = z | m;
+
+        //     }
         
 
-        // ll bans = INT_MIN;
-        // ll zz = -1;
+        // // ll bans = INT_MIN;
+        // // ll zz = -1;
 
-        // ll low = l;
-        // ll high  = r;
+        // // ll low = l;
+        // // ll high  = r;
 
-        // while(low<high){
-        //     ll mid = (low+high)/2;
-        //     ll fake = (x & mid)*(y & mid);
-        //     print("low : %lld high : %lld mid : %lld fake : %lld \n",low,high,mid,fake);
+        // // while(low<high){
+        // //     ll mid = (low+high)/2;
+        // //     ll fake = (x & mid)*(y & mid);
+        // //     print("low : %lld high : %lld mid : %lld fake : %lld \n",low,high,mid,fake);
            
-        //     if(fake>bans){
-        //         bans = fake;
-        //         zz = mid;
-        //         low = mid;
-        //     }
-        //     else if(fake==0){
-        //         high--;
-        //     }
-        //     else{
-        //         high = mid;
-        //     }
-        // }
+        // //     if(fake>bans){
+        // //         bans = fake;
+        // //         zz = mid;
+        // //         low = mid;
+        // //     }
+        // //     else if(fake==0){
+        // //         high--;
+        // //     }
+        // //     else{
+        // //         high = mid;
+        // //     }
+        // // }
 
-        ll ans1 = (x&z)*(y&z);
-        ll ans2 = (x&(z-1))*(y&(z-1));
-        if(ans2>ans1)
-            return z-1;
-        if(ans1==0)
-            return l;
-        return z;
+        // ll ans1 = (x&z)*(y&z);
+        // ll ans2 = (x&(z-1))*(y&(z-1));
+        // if(ans2>ans1)
+        //     return z-1;
+        // if(ans1==0)
+        //     return l;
+        // return z;
 
 }
 
@@ -123,6 +143,7 @@ int main(){
         
        
         // ll loopans = sol(x,y,l,r);
+
         // printf("Loop ans : %lld\n",loopans);
 
     } // while end
