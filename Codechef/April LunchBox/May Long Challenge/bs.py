@@ -59,11 +59,10 @@ def search(text, pattern):
     z = [0] * l 
     getZarr(concat, z) 
     count=0
-    # now looping through Z array for matching condition 
+    
     for i in range(l): 
   
-        # if Z[i] (matched region) is equal to pattern 
-        # length we got the pattern 
+        
         if z[i] == len(pattern): 
             count=count+1
     return count
