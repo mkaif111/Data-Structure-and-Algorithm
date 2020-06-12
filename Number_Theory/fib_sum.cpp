@@ -55,6 +55,6 @@ int main()
 {
     unsigned long long m,n;
     cin>>m>>n;
-	cout<<fiboSum(m,n);
+	cout<<fiboSum(m,n)<<endl;
     return 0;
 }
