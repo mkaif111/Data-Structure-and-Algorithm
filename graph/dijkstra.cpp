@@ -1,13 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+ int source = 0;
+
 int getMinV(bool* visited ,int* dist , int n){
     	
     int minWV = -1;
     
     for(int i=0;i<n;i++){
         
-        if(!visited[i] && ( (minWV==-1) || dist[minWV]>dist[i]))
+        if(!visited[i] && ( (minWV==-1) || dist[minWV]>dist[i] ) )
             minWV = i;
     }
     
@@ -25,8 +27,8 @@ void dijkstra(int** edges , int n){
         
     }
     
-    
-    dist[0] = 0;
+   
+    dist[source] = 0;
     
     // transverse through all n-1 edges
     for(int i=0;i<n-1;i++){

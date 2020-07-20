@@ -5,6 +5,7 @@
 using namespace std;
 
 bool bipartite(vector<int>* edges , int n, int start){
+   
     if(n==0){
         return true;
     }
