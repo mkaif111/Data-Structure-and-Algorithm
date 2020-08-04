@@ -56,14 +56,14 @@ int main() {
 	vector<int>* edgesT = new vector<int>[n];
 	int m;
 	cin >> m;
-	cout<<"first"<<endl;
+	// cout<<"first"<<endl;
 	for (int i = 0; i < m; i++) {
 		int j, k;
 		cin >> j >> k;
 		edges[j].push_back(k);
 		edgesT[k].push_back(j);
 	}
-	cout<<"first"<<endl;
+	// cout<<"first"<<endl;
 	for(int i=0;i<n;i++){
 		for(int j=0;j<edgesT[i].size();j++){
 			cout<<edgesT[i][j]<<" ";
