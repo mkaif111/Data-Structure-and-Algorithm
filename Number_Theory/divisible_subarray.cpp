@@ -5,10 +5,9 @@ int main() {
 	int t; cin>>t;
 	while(t--){
 	int n; cin>>n;
-	ll arr[n],prefix[n+1];
-	for(int i=0;i<n+1;i++){
-		prefix[i] = 0;
-	}
+	ll arr[n];
+	ll prefix[n+1]= {0};
+	
 	ll sum=0;
 	prefix[0] = 1;
 	for(int i=0;i<n;i++){
