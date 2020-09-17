@@ -17,9 +17,16 @@ void input_node(int data, Node*& head){
 		
 	}
 	
-	tail->next = new node(data);
+	tail->next = new Node(data);
 	tail = tail->next;
 	
+}
+void print(Node* head){
+	while(head!=NULL){
+		cout<<head->data<<" ";
+		head = head->next;
+	}
+	cout<<endl;
 }
 
 Node* merge_linkedlist(Node*a , Node*b){
@@ -49,7 +56,7 @@ Node* merge_linkedlist(Node*a , Node*b){
 
 
 
-Node* mid(Node*&head){
+Node* mid(Node*head){
     if(head ==NULL || head->next==NULL ){
         return head;
     }
@@ -71,8 +78,10 @@ Node* mergeSort(Node*head){
     Node* m = mid(head);
     Node* a = head;
     Node* b = m->next;
+	
     m->next = NULL;
-
+print(a);
+	print(b);
     a = mergeSort(a);
     b = mergeSort(b);
 
@@ -91,19 +100,14 @@ Node* mergeSort(Node*head){
 
 
 
-void print(Node* head){
-	while(head!=NULL){
-		cout<<head->data<<" ";
-		head = head->next;
-	}
-	cout<<endl;
-}
+
 int main() {
-	Node* head1 = NULL;
-	Node* head2 = NULL;
+	
+	
 
 	int t; cin>>t;
 	while(t--){
+		Node* head1 = NULL;
 		int n , n1;
 		cin>>n;
 		while(n--){
