@@ -1,6 +1,32 @@
 #include <iostream>
 #include <stack>
 using namespace std;
+// Coding block version
+// int braces(string A)
+// {
+//     stack<char> s;
+//     for (int i = 0; i < A.size(); i++)
+//     {
+//         if (A[i] !=')')
+//             s.push(A[i]);
+//        if (A[i] == ')')
+//         {
+
+//             if (s.top() == '(')
+//                 return 1;
+//             else{
+//                 while (s.top()!='(')
+//                    { s.pop();}
+//                 s.pop();
+//             }
+            
+            
+            
+//         }
+//     }
+   
+//     return 0;
+// }
 int braces(string A)
 {
     stack<char> s;
@@ -8,23 +34,22 @@ int braces(string A)
     {
         if (A[i] == '(' or A[i] == '/' or A[i] == '*' or A[i] == '-' or A[i] == '+')
             s.push(A[i]);
-        else if (A[i] == ')')
+       if (A[i] == ')')
         {
 
             if (s.top() == '(')
                 return 1;
-            while (!s.empty() and s.top() != '(')
+            else{
+                while (A[i]=='/' or A[i]=='*' or A[i]=='-' or A[i]=='+')
+                   { s.pop();}
                 s.pop();
-            if (!s.empty())
-                s.pop();
+            }
+            
+            
+            
         }
     }
-    while (!s.empty())
-    {
-        if (s.top() == '(')
-            return 1;
-        s.pop();
-    }
+   
     return 0;
 }
 
