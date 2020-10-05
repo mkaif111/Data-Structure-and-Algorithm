@@ -25,9 +25,10 @@ void func(long long n)
  
 int main()
 { 
-    long long n;
-    cin>>n;
+    cout<<gcd(657,963)<<endl;
+    // long long n;
+    // cin>>n;
 
-	func(n);
+	// func(n);
     return 0;
 }
