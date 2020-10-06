@@ -1,6 +1,44 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+void merge2(int *arr, int start, int end) {
+    int mid = (start+end)/2;
+    int i = start, j = mid+1, k = start;
+    int temp[10000];
+
+    while(i <= mid and j <= end) {
+        if(arr[i] < arr[j]) {
+            temp[k++] = arr[i++];
+        } else {
+            temp[k++] = arr[j++];
+        }
+    }
+    while(i <= mid) {
+        temp[k++] = arr[i++];
+    }
+    while(j <= end) {
+        temp[k++] = arr[j++];
+    }
+    for(int i = start; i <= end; i++) {
+        arr[i] = temp[i];
+    }
+
+}
+
+// function for merge sort 
+void mergeSort(int *arr, int start, int end) {
+
+    if(start >= end) {
+        return;
+    }
+
+    int mid = (start+end)/2;
+    mergeSort(arr, start, mid);
+    mergeSort(arr, mid+1, end);
+    merge(arr, start, end);
+}
+
+
 void merge(int arr[] , int a[], int b[],int n , int n1, int n2){
     int l=0;
     int r=0;
