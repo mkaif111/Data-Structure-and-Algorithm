@@ -2,9 +2,11 @@
 using namespace std;
 
 #define ll long long int
+#define mod 1000000007
+ll M[2][2] = {{1,1},{0,1}};
 
 
-void multiply(ll A[2][2],ll [2][2]){
+void multiply(ll A[2][2],ll M[2][2]){
 
 	ll firstValue = A[0][0] * M[0][0] + A[0][1] * M[1][0];
 	ll secondValue = A[0][0] * M[0][1] + A[0][1] * M[1][1];

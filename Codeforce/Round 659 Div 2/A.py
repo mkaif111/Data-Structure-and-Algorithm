@@ -1,6 +1,5 @@
 import random
 t = int(input())
-
 for __ in range(t):
 
 	n = int(input())
