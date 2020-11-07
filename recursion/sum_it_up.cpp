@@ -4,12 +4,12 @@
 #include <algorithm>
 using namespace std;
 
-// You are given an array of numbers and a target number(T), 
+// You are given an array of numbers and a target number(T),
 // print all unique combinations in the array whose sum equals the target number T.
 // Note that each number in
 //  the array may only be used once in the combination.
 
-                                                          set<vector<int>> check;
+set<vector<int>> check;
 void solve(int sum, int n, vector<int> v, vector<int> ans)
 {
     if (n == 0)

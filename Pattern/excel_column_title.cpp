@@ -11,4 +11,3 @@ string Solution::convertToTitle(int A)
     }
     return ans;
 }
-GWSTSDE500

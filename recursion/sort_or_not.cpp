@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+// Time Complexity O(n^2)
 bool sort_or_not(int arr[], int n, int index)
 {
     // checked all elements

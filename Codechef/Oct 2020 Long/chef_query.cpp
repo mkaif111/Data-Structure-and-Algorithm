@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-#define ll long long int 
+#define ll long long int
 int main()
 {
     int t;
