@@ -188,17 +188,37 @@ pair<int, bool> IsHeightTree(node *root)
     return p;
 }
 
+node *buildTreeFromArray(int arr[], int s, int e)
+{
+    if (s > e)
+    {
+        return NULL;
+    }
+    int mid = (s + e) / 2;
+    node *root = new node(arr[mid]);
+    root->left = buildTreeFromArray(arr, s, mid - 1);
+    root->right = buildTreeFromArray(arr, mid + 1, e);
+
+    return root;
+}
+
 int main()
 {
     // int n;
     // cin >> n;
-    node *root = buildTree();
+    // node *root = buildTree();
+    int n;
+    cin >> n;
+    int arr[n];
+    for (int i = 0; i < n; i++)
+        cin >> arr[i];
+    node *root = buildTreeFromArray(arr, 0, n - 1);
     cout << "Level Order Print \n";
     BFS(root);
     Pair p = fastDiameter(root);
     cout << "Height of Tree " << p.height << endl;
     cout << "Diameter of Tree " << p.diameter << endl;
-    pair<int,bool> ans = IsHeightTree(root);
+    pair<int, bool> ans = IsHeightTree(root);
     cout << "Is Height Tree " << ans.second << endl;
     // replaceSum(root);
     // BFS(root);
