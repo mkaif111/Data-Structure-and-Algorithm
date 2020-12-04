@@ -14,6 +14,36 @@ public:
         left = right = NULL;
     }
 };
+node *buildTreeLevelOrder()
+{
+    int d;
+    cin >> d;
+    if (d == -1)
+        return NULL;
+    node *root = new node(d);
+    queue<node *> q;
+    q.push(root);
+    while (!q.empty())
+    {
+        node *r = q.front();
+        q.pop();
+        int d1;
+        cin >> d1;
+        int d2;
+        cin >> d2;
+        if (d1 != -1)
+        {
+            r->left = new node(d1);
+            q.push(r->left);
+        }
+        if (d2 != -1)
+        {
+            r->right = new node(d2);
+            q.push(r->right);
+        }
+    }
+    return root;
+}
 void BFS(node *root)
 {
     if (root == NULL)
@@ -76,8 +106,8 @@ void rightView(node *root, int level, int &maxlevel)
 
 int main()
 {
-    node *root = BuildTree();
+    node *root = buildTreeLevelOrder();
     int maxlevel = -1;
-    BFS(root);
+    // BFS(root);
     rightView(root, 0, maxlevel);
 }

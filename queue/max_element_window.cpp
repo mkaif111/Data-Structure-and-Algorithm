@@ -25,7 +25,7 @@ int main()
         q.push_back(i);
     }
 
-    for (; i < n; i++)
+    for (; i < n-k; i++)
     {
         cout << arr[q.front()] << " ";
         while ((!q.empty()) and (q.front() <= i - k))
