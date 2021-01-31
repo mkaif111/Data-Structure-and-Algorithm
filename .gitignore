@@ -3,10 +3,5 @@ settings.json
 tasks.json
 .igitignore
 *.txt
-
-# Unignore all with extensions
-!*.*
-
-# Unignore all dirs
-!*/
+codenation/3
 

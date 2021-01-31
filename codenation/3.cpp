@@ -11,6 +11,7 @@ int minSum(vector<int> candy,int not_include){
     }
 
     return sum;
+    //nkngknkdnk
 }
 
 int solution(vector<int> &candy){
