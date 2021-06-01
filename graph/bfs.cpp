@@ -1,16 +1,45 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+template<typename T>
+class Graph{
+    unordered_map<T,list<T>> edges;
+    public:
+    void addEdge(T src ,T des){
+        edges[src].push_back(des);
+        edges[des].push_back(src);
+    }
+    void bfs(T src){
+        unordered_map<T,bool> visited;
+        visited[src] = true;
+        queue<T> q;
+        q.push(src);
+        while(!q.empty()){
+            T node = q.front();
+            cout<<node<<" ";
+            q.pop();
+            for(auto nbr:edges[node]){
+                if(!m[nbr]){
+                    q.push(nbr);
+                    visited[nbr] = true;
+                }
+            }
+        }
+        cout<<endl;
+        return;
+    }
+
+};
 void bfs(int** edges , int sv, int n, bool* visited){
     queue<int>q;
 
     q.push(sv);
-
+    visited[sv] = true;
     while(!q.empty()){
         int curr_v = q.front();
         cout<<curr_v+1<<" ";
         q.pop();
-        visited[curr_v] = true;
+        
 
         for(int i=0;i<n;i++){
             if(curr_v==i)
@@ -32,41 +61,17 @@ int main(){
     int n,e;
     cin >> n >> e;
 
-    int** edges = new int*[n];
-    for(int i=0;i<n;i++){
+   
 
-        edges[i] = new int[n];
-
-        for(int j=0;j<n;j++)
-            edges[i][j]=0;
-
-    }
-
-    bool* visited = new bool[n];
-    for(int i=0;i<n;i++)
-        visited[i] = false;
-
+    
+    Graph<int>g;
     while(e--)
     {
         int row,col;
         cin >> row >> col;
-        edges[row][col] = 1;
-        edges[col][row] = 1;
+        g.addEdge(row,col);
     }
-    for(int i=0;i<n;i++)
-     {  if(visited[i]==false)
-     
-         bfs(edges,i,n,visited);
-
-    }
-           
-            
-
-    for(int i=0;i<n;i++)
-        delete edges[i];
-
-    delete edges;
-    delete visited;
+    
     
 
 
