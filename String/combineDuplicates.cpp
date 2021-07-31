@@ -12,7 +12,7 @@ void sol(string s)
         char value = cnt + '0';
         out = out + value + s[i];
     }
-    cout << out;
+    cout << out<<endl;
 }
 
 int main()
